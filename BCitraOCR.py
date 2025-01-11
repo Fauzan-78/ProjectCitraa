@@ -9,7 +9,7 @@ def read_license_plate(image_path):
     # Membaca gambar
     image = cv2.imread(image_path)
 
-    # Konversi ke grayscale untuk meningkatkan akurasi OCR
+    # Konversi ke grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Filtering gambar make metode OTSU (GAUSSIAN --> OTSU)
