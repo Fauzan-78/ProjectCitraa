@@ -9,7 +9,7 @@ def read_license_plate(image_path, output_folder):
     # Membaca gambar
     image = cv2.imread(image_path)
 
-    # Konversi ke grayscale untuk meningkatkan akurasi OCR
+    # Konversi ke grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Filtering gambar make metode OTSU (GAUSSIAN --> OTSU)
@@ -33,7 +33,7 @@ def calculate_accuracy_single(detected, actual):
     """
     Menghitung akurasi berdasarkan perbandingan karakter yang cocok.
     """
-    if not actual:  # Jika referensi tidak tersedia, akurasi dianggap 0
+    if not actual:  # Jika referensi tidak ada, akurasi dianggap 0
         return 0
 
     matched = sum(1 for d, a in zip(detected, actual) if d.lower() == a.lower())
@@ -69,7 +69,7 @@ def process_images_in_folder(folder_path, output_file, output_folder):
                 # Hitung akurasi plat nomor masing - masing
                 accuracy = calculate_accuracy_single(detected_plate, actual_plate)
 
-                # Simpan hasil ke dictionary dan file
+                # Simpan result ke dictionary dan file
                 results[image_file] = {
                     "detected": detected_plate,
                     "actual": actual_plate,
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     if not output_file.endswith(".txt"):
         output_file += ".txt"
 
-    # Buat folder untuk menyimpan gambar hasil filtering jika belum ada
+    # Buat folder untuk menyimpan gambar hasil filtering kalo belum ada
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
