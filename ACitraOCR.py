@@ -33,7 +33,7 @@ def calculate_accuracy_single(detected, actual):
     """
     Menghitung akurasi berdasarkan perbandingan karakter yang cocok.
     """
-    if not actual:  # Jika referensi tidak ada, akurasi dianggap 0
+    if not actual:  # Jika referensinya gk ada, akurasi dianggap 0
         return 0
 
     matched = sum(1 for d, a in zip(detected, actual) if d.lower() == a.lower())
@@ -64,7 +64,7 @@ def process_images_in_folder(folder_path, output_file, output_folder):
 
             try:
                 detected_plate, filtered_image_path = read_license_plate(image_path, output_folder)
-                actual_plate = os.path.splitext(image_file)[0]  # Mengambil nama file tanpa ekstensi
+                actual_plate = os.path.splitext(image_file)[0]  # Ngambil nama file tanpa ekstensinya
 
                 # Hitung akurasi plat nomor masing - masing
                 accuracy = calculate_accuracy_single(detected_plate, actual_plate)
