@@ -28,7 +28,7 @@ def calculate_accuracy_single(detected, actual):
     """
     Menghitung akurasi berdasarkan perbandingan karakter yang cocok.
     """
-    if not actual:  # Jika referensi tidak tersedia, akurasi dianggap 0
+    if not actual:  # Jika referensinya gk ada, akurasi dianggap 0
         return 0
 
     matched = sum(1 for d, a in zip(detected, actual) if d.lower() == a.lower())
@@ -64,7 +64,7 @@ def process_images_in_folder(folder_path, output_file):
                 # Hitung akurasi untuk plat masing - masing
                 accuracy = calculate_accuracy_single(detected_plate, actual_plate)
 
-                # Simpan hasil ke dictionary dan file
+                # Simpan result ke dictionary dan file
                 results[image_file] = {
                     "detected": detected_plate,
                     "actual": actual_plate,
